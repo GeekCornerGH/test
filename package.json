@@ -1,5 +1,5 @@
 {
-    "name": "test"
+    "name": "test",
     "version": "1.1.2",
     "description": "test",
     "main": "src/app.js",
@@ -9,9 +9,7 @@
         "node": "^18.x.x"
     },
     "scripts": {
-        "build": "echo ok",
-    },
-    "dependencies": {
+        "build": "echo ok"
     },
     "repository": {
         "type": "git",
