@@ -1,7 +1,20 @@
 {
-  "name":"test",
-  "version": "1.0.0",
-  "scripts": {
-    "build":"echo Ok"
-  }
+    "name": "test"
+    "version": "1.1.2",
+    "description": "test",
+    "main": "src/app.js",
+    "author": "Luuxis",
+    "url": "http://craftdium.ml/launcherSelvania",
+    "engines": {
+        "node": "^18.x.x"
+    },
+    "scripts": {
+        "build": "echo ok",
+    },
+    "dependencies": {
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/luuxis/Selvania-Launcher.git"
+    }
 }
