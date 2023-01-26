@@ -1,0 +1,51 @@
+# module du helios launcher
+name: Launcher Build
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  check-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for update
+        id: updatecheck
+        uses: EndBug/version-check@v2
+        with:
+          diff-search: true
+      - name: Stop process if no release
+        if: steps.updatecheck.outputs.changed == 'false'
+        uses: andymckay/cancel-action@0.3
+      
+
+  release:
+    needs: [check-update]
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install Dependencies
+        run: npm ci
+        shell: bash
+
+      - name: Build
+        env:
+          GH_TOKEN: ${{ secrets.github_token }}
+        run: npm run build
+        shell: bash
